@@ -16,6 +16,8 @@ while true; do
             docker-compose down ;
             sleep 1 ;
             docker-compose up -d --build ;
+	    sleep 1 ;
+	    docker container rm -f c7-default;
             break;;
         * ) echo "Preencher S ou N.";;
     esac
