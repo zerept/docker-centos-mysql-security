@@ -1,0 +1,28 @@
+version: '3.3'
+
+services:
+  centos:
+    image: local/c7-default:latest
+    container_name: c7-default
+    restart: unless-stopped
+    build:
+      context: default/
+    volumes:
+      - v_home:/home
+      - v_systemd:/sys/fs/cgroup
+  mysql:
+    image: local/c7-mysql:latest
+    container_name: c7-mysql
+    restart: unless-stopped
+    build:
+      context: mysql/    
+    ports:
+      - 3306:3306
+    volumes:
+      - v_home:/home
+      - v_systemd:/sys/fs/cgroup      
+      - v_data:/var/lib/mysql
+volumes:
+  v_data:
+  v_systemd:
+  v_home:
